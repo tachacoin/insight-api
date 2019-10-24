@@ -21,9 +21,9 @@
 * [Stake](#stake-statistic)
 * [Total Supply](#total-supply-statistic)
 
-A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
+A TACHACOIN blockchain REST and web socket API service for [Tachacoincore Node](https://github.com/tachacoin/tachacoincore-node).
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/qtumproject/qtum-explorer.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/tachacoin/tachacoin-explorer.
 
 ## Getting Started
 
@@ -35,37 +35,37 @@ This is a backend-only service. If you're looking for the web frontend applicati
     ```  
 2. Install mongo https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
 
-3. Install qtum-bitcore https://github.com/qtumproject/qtum-bitcore - with ZMQ ! 
+3. Install tachacoin-bitcore https://github.com/tachacoin/tachacoin-bitcore - with ZMQ ! 
 
     ```bash
     # with ZMQ
     sudo apt-get install libzmq3-dev 
     ```  
-4. Install qtumcore-node  
+4. Install tachacoincore-node  
 
     ```bash
-    npm i https://github.com/qtumproject/qtumcore-node.git#master
+    npm i https://github.com/tachacoin/tachacoincore-node.git#master
 
-    $(npm bin)/qtumcore-node create mynode
+    $(npm bin)/tachacoincore-node create mynode
 
     cd mynode
 
-    $(npm bin)/qtumcore-node install https://github.com/qtumproject/insight-api.git#master
+    $(npm bin)/tachacoincore-node install https://github.com/tachacoin/insight-api.git#master
     ```  
-5. Edit qtumcore-node.json  
+5. Edit tachacoincore-node.json  
 
     ```json
     {
       "network": "livenet",
       "port": 3001,
       "services": [
-        "qtumd",
-        "qtum-insight-api",
+        "tachacoind",
+        "tachacoin-insight-api",
         "web"
       ],
       "servicesConfig": {
-        "qtum-insight-api": {
-          "routePrefix": "qtum-insight-api",
+        "tachacoin-insight-api": {
+          "routePrefix": "tachacoin-insight-api",
           "rateLimiterOptions": {
           "whitelist": [
              "123.456.12.34",
@@ -79,7 +79,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
           "db": {
             "host": "127.0.0.1",
             "port": "27017",
-            "database": "qtum-api-livenet",
+            "database": "tachacoin-api-livenet",
             "user": "",
             "password": ""
           },
@@ -87,16 +87,16 @@ This is a backend-only service. If you're looking for the web frontend applicati
             "updateFromBlockHeight": 0
           }
         },
-        "qtumd": {
+        "tachacoind": {
           "spawn": {
-        	  "datadir": "/home/user/.qtum",
-            "exec": "/home/user/qtum-bitcore/src/qtumd"
+        	  "datadir": "/home/user/.tachacoin",
+            "exec": "/home/user/tachacoin-bitcore/src/tachacoind"
           }
         }
       }
     }
     ```  
-6. Edit qtum.conf  
+6. Edit tachacoin.conf  
 
     ```
     server=1
@@ -119,28 +119,28 @@ This is a backend-only service. If you're looking for the web frontend applicati
 7. Run Node  
 
     ```
-    $(npm bin)/qtumcore-node start
+    $(npm bin)/tachacoincore-node start
     ```  
 
-8. The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`  
+8. The API endpoints will be available by default at: `http://localhost:3001/tachacoin-insight-api/`  
 
 ## Add-on Services
 
-There add-on service available to extend the functionality of Qtumcore:
+There add-on service available to extend the functionality of Tachacoincore:
 
-- [QTUM Explorer](https://github.com/qtumproject/qtum-explorer)
+- [TACHACOIN Explorer](https://github.com/tachacoin/tachacoin-explorer)
 
 ## Prerequisites
 
-**Note:** You can use an existing QTUM data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `qtum.conf`, as well as a few other additional fields.
+**Note:** You can use an existing TACHACOIN data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `tachacoin.conf`, as well as a few other additional fields.
 
 
 ## Query Rate Limit
 
-To protect the server, qtum-insight-api has a built it query rate limiter. It can be configurable in `qtumcore-node.json` with:
+To protect the server, tachacoin-insight-api has a built it query rate limiter. It can be configurable in `tachacoincore-node.json` with:
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tachacoin-insight-api": {
       "rateLimiterOptions": {
         "whitelist": ["::ffff:127.0.0.1"]
       }
@@ -151,17 +151,17 @@ To protect the server, qtum-insight-api has a built it query rate limiter. It ca
 Or disabled entirely with:
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tachacoin-insight-api": {
       "disableRateLimiter": true
     }
   }
   ```
   
-**Note:** `routePrefix` can be configurable in `qtumcore-node.json` with:
+**Note:** `routePrefix` can be configurable in `tachacoincore-node.json` with:
 
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tachacoin-insight-api": {
       "routePrefix": "insight-api",
     }
   }
@@ -698,7 +698,7 @@ POST response:
   /insight-api/peer
 ```
 
-### Status of the QTUM Network
+### Status of the TACHACOIN Network
 ```
   /insight-api/status?q=xxx
 ```
